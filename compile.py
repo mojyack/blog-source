@@ -17,8 +17,8 @@ def build_page(title, body, css):
                 htag('title')(title),
                 htag('head')(
                     htag('meta', content='text/html;charset=utf-8', http_equiv='Content-Type'),
-                    htag('link', rel='stylesheet', href='/assets/style.css'),
-                    htag('link', rel='stylesheet', href='/assets/' + css),
+                    htag('link', rel='stylesheet', href='/blog/assets/style.css'),
+                    htag('link', rel='stylesheet', href='/blog/assets/' + css),
                 ),
                 htag('header')(
                     htag('div' , klass='title')(
@@ -26,9 +26,9 @@ def build_page(title, body, css):
                         htag('h2')('猫と仲良く暮らしたいだけの男、プログラマの成り損ない。'),
                     ),
                     htag('nav', klass='main_menu')(
-                        htag('a', href='/')("Home"),
-                        htag('a', href='/categories/index.html')("Categories"),
-                        htag('a', href='/about.html')("About"),
+                        htag('a', href='/blog/')("Home"),
+                        htag('a', href='/blog/categories/index.html')("Categories"),
+                        htag('a', href='/blog/about.html')("About"),
                     ),
                ),
                tinyhtml.raw(body),
@@ -48,7 +48,7 @@ def compile_article(path):
         htag('h1', id='article_title')(info['title']),
         htag('div', id='article_date')(date),
         htag('ul', id='tag_list')(
-            (htag('li')(htag('a', href=f'/categories/{tag}.html')(tag)) for tag in info['tag']),
+            (htag('li')(htag('a', href=f'/blog/categories/{tag}.html')(tag)) for tag in info['tag']),
         ),
     ).render()
     for file in info['files']:
@@ -82,12 +82,12 @@ def main():
             continue
 
         text = htag('article', klass='article')(
-                    htag('a', href = '/' + article['link'])(
+                    htag('a', href = '/blog/' + article['link'])(
                         htag('h1', id='article_title')(article['title']),
                     ),
                     htag('div', id='article_date')(article['date']),
                     htag('ul', id='tag_list')(
-                        (htag('li')(htag('a', href=f'/categories/{tag}.html')(tag)) for tag in article['tags']),
+                        (htag('li')(htag('a', href=f'/blog/categories/{tag}.html')(tag)) for tag in article['tags']),
                     ),
                     htag('p')(article['description']),
                 ).render()
@@ -99,8 +99,7 @@ def main():
             texts[t][0] += 1
             texts[t][1] += text
         
-
-    os.makedirs('blog/categories')
+    os.makedirs('blog/categories', exist_ok=True)
     categories_index_elements = ''
     for tag in sorted(texts):
         if tag == 'index':
@@ -110,7 +109,7 @@ def main():
             index = build_page(f'tag: "{tag}"', texts[tag][1], 'index.css').render()
             open(f'blog/categories/{tag}.html', mode='w').write(index)
             categories_index_elements += htag('li')(
-                htag('a', href=f'/categories/{tag}.html')(f'{tag} ({texts[tag][0]})'),
+                htag('a', href=f'/blog/categories/{tag}.html')(f'{tag} ({texts[tag][0]})'),
             ).render()
 
     categories_index_body = htag('ul', klass='category_list')(tinyhtml.raw(categories_index_elements)).render()
@@ -123,6 +122,6 @@ def main():
     about = build_page('About', about_body, 'article.css').render();
     open('blog/about.html', mode='w').write(about)
 
-    shutil.copytree(f'assets', f'blog/assets')
+    shutil.copytree(f'assets', f'blog/assets', dirs_exist_ok=True)
 
 main()
