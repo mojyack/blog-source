@@ -1,0 +1,19 @@
+.article {
+    background-color: #252525;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+    padding: 0.5em;
+    margin: 1em;
+}
+
+body {
+    text-align: center;
+}
+
+#article_title {
+    margin-bottom: 0px;
+}
+
+#article_date {
+    margin: 0.2em;
+    color: #E0E0E0;
+}
