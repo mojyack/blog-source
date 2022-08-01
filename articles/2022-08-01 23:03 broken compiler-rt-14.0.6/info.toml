@@ -1,0 +1,5 @@
+title = "compiler-rtがビルドできない問題"
+description = "定期開催 \"Gentoo Update Battle\" 今回の挑戦者はLLVMからcompiler-rtさん"
+files = [ "article.md" ]
+data = [ ]
+tag = [ "Gentoo" ]
