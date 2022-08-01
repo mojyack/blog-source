@@ -3,6 +3,14 @@ body {
     padding: 4em;
 }
 
+code {
+    display: inline-block;
+    padding: 0.1em;
+    background-color: #181818;
+    border-radius: 3px;
+    border: solid 1px #101010;
+}
+
 #article_header {
     text-align: center;
 }
