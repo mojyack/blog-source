@@ -37,10 +37,8 @@ def build_page(title, body, css):
 def compile_article(path):
     fixed_path = path.replace(' ', '_')
     output_dir = 'blog/' + fixed_path
-    if os.path.exists(output_dir):
-        return None
 
-    os.makedirs(output_dir)
+    os.makedirs(output_dir, exist_ok=True)
 
     info = toml.load(f'{path}/info.toml')
     date = os.path.basename(path)[:10]
@@ -53,7 +51,7 @@ def compile_article(path):
     ).render()
     for file in info['files']:
         article_path = f'{path}/{file}'
-        body += markdown.markdown(open(article_path).read())
+        body += markdown.markdown(open(article_path).read(), extensions=['fenced_code'])
 
     index = build_page(info['title'], body, 'article.css').render()
 
@@ -78,8 +76,6 @@ def main():
             continue
 
         article = compile_article(file)
-        if article == None:
-            continue
 
         text = htag('article', klass='article')(
                     htag('a', href = '/blog/' + article['link'])(
