@@ -1,0 +1,5 @@
+title = "Gentoo+Waylandで画面共有する方法"
+description = "画面共有のセットアップ手段備忘録"
+files = [ "article.md" ]
+data = [ ]
+tag = [ "Gentoo", "Wayland" ]
