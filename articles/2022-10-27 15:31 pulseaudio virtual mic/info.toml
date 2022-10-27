@@ -1,0 +1,5 @@
+title = "PulseAudioで仮想マイクを作る"
+description = "マイクを使うアプリを書いたけど、声を出してテストはしたくないという事情があったので、仮想マイクの作り方を調べた"
+files = [ "article.md" ]
+data = [ ]
+tag = [ "PulseAudio", "Linux" ]
