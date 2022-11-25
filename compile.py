@@ -51,7 +51,7 @@ def compile_article(path):
     ).render()
     for file in info['files']:
         article_path = f'{path}/{file}'
-        body += markdown.markdown(open(article_path).read(), extensions=['fenced_code'])
+        body += markdown.markdown(open(article_path).read(), extensions=['fenced_code', 'tables'])
 
     index = build_page(info['title'], body, 'article.css').render()
 
