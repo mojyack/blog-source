@@ -58,7 +58,7 @@ def compile_article(path):
     open(f'{output_dir}/index.html', mode='w').write(index)
 
     for data in info['data']:
-        shutil.copytree(f'{path}/{data}', f'{output_dir}/{data}')
+        shutil.copytree(f'{path}/{data}', f'{output_dir}/{data}', dirs_exist_ok=True)
 
     result = {}
     result['title'] = info['title']
