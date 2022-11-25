@@ -1,0 +1,5 @@
+title = "C++のポリモーフィズムとそのパフォーマンス"
+description = "C++の仮想関数は遅いって聞くけど、実際どうなの？もっと早くできる？"
+files = [ "article.md" ]
+data = [ "data" ]
+tag = [ "C++" ]
