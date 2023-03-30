@@ -1,0 +1,5 @@
+title = "mikanのデモ動画"
+description = "ただの動画ファイル置き場"
+files = [ "article.md" ]
+data = [ "data" ]
+tag = [ "mikan" ]
